@@ -16,34 +16,34 @@ import java.util.List;
  * [
  * [-1, 0, 1],
  * [-1, -1, 2]
+   -2 -1 -1 0 1 2 -4
+
  * ]
  */
-public class P13ThreeSum {
-    public static void main(String[] args) {
-        P13ThreeSum p13ThreeSum = new P13ThreeSum();
-        int[] nums = {-1, 0, 1, 2, -1, 4};
-        System.out.println(p13ThreeSum.threeSum(nums));
-    }
-
+public class P15ThreeSum {
     public List<List<Integer>> threeSum(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> result = new ArrayList<List<Integer>>();
-        for (int i = 0; i < nums.length - 3; i++) {
-            int start = i;
+        for (int i = 0; i < nums.length - 2; i++) {
+            if (i>0 && nums[i]==nums[i-1]) continue;;
+            int start = i + 1;
             int end = nums.length - 1;
-            while (start < end) {
-                int min_number = nums[start + 1];
-                if (nums[start] + nums[min_number] + nums[end] == 0) {
+            while (start < end ) {
+                int expected = 0 - nums[i];
+                if (nums[start] + nums[end] == expected) {
                     List<Integer> tmpList = new ArrayList<Integer>();
-                    tmpList.add(start);
-                    tmpList.add(min_number);
-                    tmpList.add(end);
+                    tmpList.add(nums[i]);
+                    tmpList.add(nums[start]);
+                    tmpList.add(nums[end]);
                     result.add(tmpList);
-                    end = end - 1;
-                } else if (nums[start] + nums[min_number] + nums[end] < 0) {
-                    start = start + 1;
+                    end--;
+                    while (start < end && nums[end] == nums[end+1]) end--;
+                } else if (nums[start] + nums[end] < expected) {
+                    start++;
+                    while (start < end && nums[start] == nums[start-1]) start++;
                 } else {
-                    end = end - 1;
+                    end--;
+                    while (start < end && nums[end] == nums[end+1]) end--;
                 }
             }
         }
