@@ -72,17 +72,17 @@ public class P2AddTwoNumbers {
 
 
     public class Solution {
-        public P2ListNode addTwoNumbers(P2ListNode l1, P2ListNode l2) {
+        public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
             int carry_bit = 0;
             int n1, n2;
             int intermediate_sum;
-            P2ListNode result = null;
+            ListNode result = null;
             while (l1 != null || l2 != null) {
                 n1 = l1 != null ? l1.val : 0;
                 n2 = l2 != null ? l2.val : 0;
                 intermediate_sum = n1 + n2 + carry_bit;
                 carry_bit = intermediate_sum / 10;
-                P2ListNode node = new P2ListNode(intermediate_sum%10);
+                ListNode node = new ListNode(intermediate_sum%10);
                 if (result == null) {
                     result = node;
                 } else {
@@ -93,7 +93,7 @@ public class P2AddTwoNumbers {
             }
 
             if (carry_bit != 0) {
-                P2ListNode node = new P2ListNode(carry_bit);
+                ListNode node = new ListNode(carry_bit);
                 result.next = node;
             }
 

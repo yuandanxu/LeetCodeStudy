@@ -13,18 +13,18 @@ package LeetCode;
     Output: 7 -> 0 -> 8*/
 public class P2LeetAddNumbers {
     public static void main(String[] args) {
-        P2ListNode n1 = new P2ListNode(1);
-//        P2ListNode n1_2 = new P2ListNode(9);
-//        P2ListNode n1_3 = new P2ListNode(3);
+        ListNode n1 = new ListNode(1);
+//        ListNode n1_2 = new ListNode(9);
+//        ListNode n1_3 = new ListNode(3);
 //        n1.next = n1_2;
 //        n1_2.next = n1_3;
-        P2ListNode n2 = new P2ListNode(9);
-        P2ListNode n2_2 = new P2ListNode(9);
-//        P2ListNode n2_3 = new P2ListNode(4);
+        ListNode n2 = new ListNode(9);
+        ListNode n2_2 = new ListNode(9);
+//        ListNode n2_3 = new ListNode(4);
         n2.next = n2_2;
 //        n2_2.next = n2_3;
 
-        P2ListNode result = new P2LeetAddNumbers().addTwoNumbersV2(n1, n2);
+        ListNode result = new P2LeetAddNumbers().addTwoNumbersV2(n1, n2);
         while (result != null) {
             System.out.println(result.val);
             result = result.next;
@@ -32,18 +32,18 @@ public class P2LeetAddNumbers {
     }
 
 
-    private P2ListNode addTwoNumbers(P2ListNode l1, P2ListNode l2) {
+    private ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         int carry_bit = 0;
         int n1, n2;
         int intermediate_sum;
-        P2ListNode result = null;
-        P2ListNode result_tmp = null;
+        ListNode result = null;
+        ListNode result_tmp = null;
         while (l1 != null || l2 != null) {
             n1 = l1 != null ? l1.val : 0;
             n2 = l2 != null ? l2.val : 0;
             intermediate_sum = n1 + n2 + carry_bit;
             carry_bit = intermediate_sum / 10;
-            P2ListNode node = new P2ListNode(intermediate_sum % 10);
+            ListNode node = new ListNode(intermediate_sum % 10);
             if (result == null) {
                 result = node;
                 result_tmp = result;
@@ -56,20 +56,20 @@ public class P2LeetAddNumbers {
         }
 
         if (carry_bit != 0) {
-            P2ListNode node = new P2ListNode(carry_bit);
+            ListNode node = new ListNode(carry_bit);
             result_tmp.next = node;
         }
 
         return result;
     }
 
-    private P2ListNode addTwoNumbersV2(P2ListNode l1, P2ListNode l2) {
-        P2ListNode pre = new P2ListNode(0);
-        P2ListNode head = pre;
+    private ListNode addTwoNumbersV2(ListNode l1, ListNode l2) {
+        ListNode pre = new ListNode(0);
+        ListNode head = pre;
         int carry = 0;
         int sum = 0;
         while (l1 != null || l2 != null || carry != 0) {
-            P2ListNode cur = new P2ListNode(0);
+            ListNode cur = new ListNode(0);
             int n1 = l1 != null ? l1.val : 0;
             int n2 = l2 != null ? l2.val : 0;
             sum = n1 + n2 + carry;
